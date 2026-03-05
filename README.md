@@ -29,9 +29,8 @@ Este projeto cria mapas interativos com funcionalidades de:
 - **Marcadores diferenciados** por tipo de atividade
 - **Dashboard interativo** com estatísticas
 
-### Gerências Contempladas
-- **GECF** - Gerência de Controle Florestal (Planos de Manejo Florestal Sustentável)
-- **GELI** - Gerência de Licenciamento Industrial (Indústria Madeireira e Mobiliária)
+### Gerência Contemplada
+- **GECF** - Gerência de Controle Florestal (Planos de Manejo Florestal Sustentável, Indústria Madeireira e Mobiliária)
 
 ## Instalação
 
@@ -113,7 +112,7 @@ python main.py
 | razao_social | Nome da empresa | MADEIREIRA AMAZONAS LTDA |
 | municipio | Município do AM | Manaus |
 | tipo_licenca | LP, LI ou LO | LO |
-| gerencia | GECF ou GELI | GELI |
+| gerencia | GECF | GECF |
 | atividade | Descrição da atividade | Indústria Madeireira |
 | latitude | Coordenada (opcional*) | -3.1019 |
 | longitude | Coordenada (opcional*) | -60.0250 |
@@ -225,7 +224,7 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 ## Créditos
 
 **Fonte dos dados:** [IPAAM - Instituto de Proteção Ambiental do Amazonas](https://www.ipaam.am.gov.br/transparencia-tecnica/)  
-**Gerências:** GECF (Controle Florestal) e GELI (Licenciamento Industrial)
+**Gerência:** GECF (Controle Florestal)
 
 ## Contribuindo
 
