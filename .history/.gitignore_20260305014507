@@ -1,0 +1,47 @@
+# Ambiente virtual
+.venv/
+venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Arquivos de output gerados (pesados)
+output/*.html
+output/plotly/*.html
+output/*.geojson
+
+# Dados locais (manter apenas exemplo)
+dados/licencas_ipaam_unificado.csv
+dados/licencas_2025_processado.csv
+
+# IDEs e editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Arquivos de distribuição
+dist/
+build/
+*.egg-info/
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Arquivos temporários
+*.tmp
+*.temp

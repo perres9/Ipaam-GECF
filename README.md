@@ -1,0 +1,244 @@
+# IPAAM - Mapa Histórico de Licenças Ambientais
+
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
+[![Folium](https://img.shields.io/badge/Folium-Maps-orange.svg)](https://python-visualization.github.io/folium/)
+
+Sistema de visualização geoespacial para análise histórica e comparativa das licenças ambientais emitidas pelo **IPAAM** (Instituto de Proteção Ambiental do Amazonas).
+
+## 📸 Screenshots
+
+![Screenshot 1](assets/1.PNG)
+![Screenshot 2](assets/2.PNG)
+![Screenshot 3](assets/3.PNG)
+
+## ✨ Features
+
+Nova versão com design moderno e profissional:
+- **Interface Clean** - Sidebar colapsável com estatísticas
+- **Design Responsivo** - Funciona em desktop e mobile
+- **Modo Escuro** - Alterne entre temas claro e escuro
+- **Popups Elegantes** - Informações detalhadas em cards modernos
+- **Clusters Inteligentes** - Agrupamento dinâmico de marcadores
+
+## Sobre o Projeto
+
+Este projeto cria mapas interativos com funcionalidades de:
+- **Time Slider** (Controle deslizante de tempo) para visualizar a evolução das licenças ao longo dos anos
+- **Mapa de Calor** (Heatmap) para mostrar densidade de atividades por região
+- **Marcadores diferenciados** por tipo de atividade
+- **Dashboard interativo** com estatísticas
+
+### Gerências Contempladas
+- **GECF** - Gerência de Controle Florestal (Planos de Manejo Florestal Sustentável)
+- **GELI** - Gerência de Licenciamento Industrial (Indústria Madeireira e Mobiliária)
+
+## 🚀 Instalação
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/perres9/ipaam-mapa-licencas.git
+cd ipaam-mapa-licencas
+```
+
+### 2. Crie um ambiente virtual (recomendado)
+
+```bash
+# Windows
+python -m venv venv
+venv\Scripts\activate
+
+# Linux/Mac
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 3. Instale as dependências
+
+```bash
+pip install -r requirements.txt
+```
+
+## Estrutura do Projeto
+
+```
+ipaam/
+│
+├── dados/
+│   └── licencas_ipaam_unificado.csv   # Dados unificados
+│
+├── src/
+│   ├── __init__.py
+│   ├── processamento_dados.py         # ETL e geocodificação
+│   ├── mapa_premium.py                # ★ Mapa Premium (novo!)
+│   ├── mapa_folium.py                 # Mapas com Folium
+│   ├── mapa_profissional.py           # Mapa profissional
+│   └── visualizacao_plotly.py         # Gráficos com Plotly
+│
+├── output/                            # Arquivos gerados
+│   ├── mapa_ipaam_premium.html        # ★ RECOMENDADO
+│   ├── mapa_ipaam_completo.html
+│   ├── mapa_ipaam_temporal.html
+│   ├── licencas_ipaam.geojson
+│   └── plotly/
+│       ├── mapa_animado.html
+│       ├── dashboard_completo.html
+│       └── ...
+│
+├── main.py                            # Script principal
+├── requirements.txt                   # Dependências
+└── README.md                          # Este arquivo
+```
+
+## Uso
+
+### Execução Rápida (com dados de exemplo)
+
+```bash
+python main.py
+```
+
+### Com seus próprios dados
+
+1. Acesse o [Portal de Transparência Técnica do IPAAM](https://www.ipaam.am.gov.br/transparencia-tecnica/)
+2. Baixe as planilhas de licenças (2018-2025)
+3. Unifique os dados seguindo o formato abaixo
+4. Salve como `dados/licencas_ipaam.csv`
+
+#### Formato esperado do CSV:
+
+| Coluna | Descrição | Exemplo |
+|--------|-----------|---------|
+| razao_social | Nome da empresa | MADEIREIRA AMAZONAS LTDA |
+| municipio | Município do AM | Manaus |
+| tipo_licenca | LP, LI ou LO | LO |
+| gerencia | GECF ou GELI | GELI |
+| atividade | Descrição da atividade | Indústria Madeireira |
+| latitude | Coordenada (opcional*) | -3.1019 |
+| longitude | Coordenada (opcional*) | -60.0250 |
+| data_emissao | Data de emissão | 2023-03-15 |
+| data_validade | Data de validade | 2028-03-15 |
+| ano | Ano de emissão | 2023 |
+
+> *Se não houver coordenadas, o sistema fará geocodificação automática pelo município.
+
+## Funcionalidades dos Mapas
+
+### Mapa Folium (mapa_ipaam_completo.html)
+
+- **Múltiplas camadas de tiles**: Terrain, Satélite, OpenStreetMap
+- **Marcadores por categoria**:
+-  Árvore → Manejo Florestal
+-  Fábrica → Indústria Madeireira  
+-  Cadeira → Indústria Mobiliária
+- **Time Slider** para navegar pelos anos
+- **Heatmap** de densidade
+- **Popup** com informações detalhadas
+- **Minimap** para navegação
+- **Fullscreen** para visualização expandida
+
+### Visualizações Plotly
+
+- **mapa_animado.html**: Mapa com slider de anos
+- **mapa_densidade.html**: Heatmap de concentração
+- **evolucao_anual.html**: Gráfico de barras por ano
+- **top_municipios.html**: Ranking dos municípios
+- **timeline.html**: Evolução acumulada
+- **dashboard_completo.html**: Todas as métricas em um só lugar
+
+## Scripts Individuais
+
+### Processamento de Dados
+
+```python
+from src.processamento_dados import ProcessadorDadosIPAAM
+
+processador = ProcessadorDadosIPAAM()
+processador.carregar_csv('dados/licencas_ipaam.csv')
+processador.preencher_coordenadas()  # Geocodifica municípios
+processador.classificar_atividade()
+df = processador.get_dataframe()
+```
+
+### Gerar Mapa Folium
+
+```python
+from src.mapa_folium import GeradorMapaIPAAM
+
+gerador = GeradorMapaIPAAM(df)
+mapa = gerador.gerar_mapa_completo(caminho_saida='mapa.html')
+```
+
+### Gerar Visualizações Plotly
+
+```python
+from src.visualizacao_plotly import criar_visualizacoes_plotly
+
+criar_visualizacoes_plotly(df, 'output/plotly')
+```
+
+## Dependências
+
+- **pandas** - Manipulação de dados
+- **folium** - Mapas interativos
+- **plotly** - Gráficos interativos
+- **geopy** - Geocodificação
+- **openpyxl** - Leitura de Excel
+- **numpy** - Operações numéricas
+
+## Fontes de Dados
+
+- [Portal de Transparência Técnica - IPAAM](https://www.ipaam.am.gov.br/transparencia-tecnica/)
+- [Geoportal IPAAM](http://geoportal.ipaam.am.gov.br/)
+
+## Tipos de Licença
+
+| Sigla | Nome | Descrição |
+|-------|------|-----------|
+| LP | Licença Prévia | Fase preliminar de planejamento |
+| LI | Licença de Instalação | Autoriza início da construção |
+| LO | Licença de Operação | Autoriza funcionamento |
+
+## Personalização
+
+### Alterar cores por categoria
+
+Edite `CORES_CATEGORIA` em `src/mapa_folium.py` ou `src/visualizacao_plotly.py`:
+
+```python
+CORES_CATEGORIA = {
+    'Manejo Florestal': '#228B22',      # Verde
+    'Indústria Madeireira': '#FF8C00',  # Laranja
+    'Indústria Mobiliária': '#4169E1',  # Azul
+}
+```
+
+### Alterar estilo do mapa base
+
+Em `src/mapa_folium.py`, modifique os TileLayers ou use estilos Mapbox.
+
+## 📄 Licença
+
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
+
+## 🙏 Créditos
+
+**Fonte dos dados:** [IPAAM - Instituto de Proteção Ambiental do Amazonas](https://www.ipaam.am.gov.br/transparencia-tecnica/)  
+**Gerências:** GECF (Controle Florestal) e GELI (Licenciamento Industrial)
+
+## 🤝 Contribuindo
+
+Contribuições são bem-vindas! Sinta-se à vontade para:
+
+1. Fazer um Fork do projeto
+2. Criar uma branch para sua feature (`git checkout -b feature/NovaFeature`)
+3. Commit suas mudanças (`git commit -m 'Add: nova feature'`)
+4. Push para a branch (`git push origin feature/NovaFeature`)
+5. Abrir um Pull Request
+
+---
+
+<p align="center">
+  Desenvolvido com ❤️ por <a href="https://github.com/perres9">@perres9</a> para a transparência ambiental do Amazonas
+</p>
