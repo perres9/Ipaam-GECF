@@ -6,13 +6,13 @@
 
 Sistema de visualização geoespacial para análise histórica e comparativa das licenças ambientais emitidas pelo **IPAAM** (Instituto de Proteção Ambiental do Amazonas).
 
-## 📸 Screenshots
+## Screenshots
 
 ![Screenshot 1](assets/1.PNG)
 ![Screenshot 2](assets/2.PNG)
 ![Screenshot 3](assets/3.PNG)
 
-## ✨ Features
+## Features
 
 Nova versão com design moderno e profissional:
 - **Interface Clean** - Sidebar colapsável com estatísticas
@@ -33,13 +33,13 @@ Este projeto cria mapas interativos com funcionalidades de:
 - **GECF** - Gerência de Controle Florestal (Planos de Manejo Florestal Sustentável)
 - **GELI** - Gerência de Licenciamento Industrial (Indústria Madeireira e Mobiliária)
 
-## 🚀 Instalação
+## Instalação
 
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/perres9/ipaam-mapa-licencas.git
-cd ipaam-mapa-licencas
+git clone https://github.com/perres9/Ipaam-GECF.git
+cd Ipaam-GECF
 ```
 
 ### 2. Crie um ambiente virtual (recomendado)
@@ -71,13 +71,13 @@ ipaam/
 ├── src/
 │   ├── __init__.py
 │   ├── processamento_dados.py         # ETL e geocodificação
-│   ├── mapa_premium.py                # ★ Mapa Premium (novo!)
+│   ├── mapa_premium.py                # Mapa Premium
 │   ├── mapa_folium.py                 # Mapas com Folium
 │   ├── mapa_profissional.py           # Mapa profissional
 │   └── visualizacao_plotly.py         # Gráficos com Plotly
 │
 ├── output/                            # Arquivos gerados
-│   ├── mapa_ipaam_premium.html        # ★ RECOMENDADO
+│   ├── mapa_ipaam_premium.html        # Recomendado
 │   ├── mapa_ipaam_completo.html
 │   ├── mapa_ipaam_temporal.html
 │   ├── licencas_ipaam.geojson
@@ -218,16 +218,16 @@ CORES_CATEGORIA = {
 
 Em `src/mapa_folium.py`, modifique os TileLayers ou use estilos Mapbox.
 
-## 📄 Licença
+## Licença
 
 Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
 
-## 🙏 Créditos
+## Créditos
 
 **Fonte dos dados:** [IPAAM - Instituto de Proteção Ambiental do Amazonas](https://www.ipaam.am.gov.br/transparencia-tecnica/)  
 **Gerências:** GECF (Controle Florestal) e GELI (Licenciamento Industrial)
 
-## 🤝 Contribuindo
+## Contribuindo
 
 Contribuições são bem-vindas! Sinta-se à vontade para:
 
@@ -240,5 +240,5 @@ Contribuições são bem-vindas! Sinta-se à vontade para:
 ---
 
 <p align="center">
-  Desenvolvido com ❤️ por <a href="https://github.com/perres9">@perres9</a> para a transparência ambiental do Amazonas
+  Desenvolvido por <a href="https://github.com/perres9">@perres9</a> para a transparência ambiental do Amazonas
 </p>
