@@ -4,6 +4,8 @@
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 [![Folium](https://img.shields.io/badge/Folium-Maps-orange.svg)](https://python-visualization.github.io/folium/)
 
+**[Ver Mapa Online](https://perres9.github.io/Ipaam-GECF/)**
+
 Sistema de visualização geoespacial para análise histórica e comparativa das licenças ambientais emitidas pelo **IPAAM** (Instituto de Proteção Ambiental do Amazonas).
 
 ## Screenshots
